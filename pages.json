@@ -1,0 +1,122 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "校园服务"
+			}
+		},
+		{
+			"path": "pages/oldBookSellEdit/oldBookSellEdit",
+			"style": {
+				"navigationBarTitleText": "编辑二手书"
+			}
+		},
+		{
+			"path": "pages/oldBookSell/oldBookSell",
+			"style": {
+				"navigationBarTitleText": "闲置书籍信息"
+			}
+		},
+
+		{
+			"path": "pages/newThingsDetail/newThingsDetail",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		},
+
+		{
+			"path": "pages/identify/identify",
+			"style": {
+				"navigationBarTitleText": "身份认证"
+			}
+		},
+		{
+			"path": "pages/profile/profile",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/newThings/newThings",
+			"style": {
+				"navigationBarTitleText": "新鲜事",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/newThingEidt/newThingEdit",
+			"style": {
+				"navigationBarTitleText": "发布"
+			}
+		},
+		{
+			"path": "pages/findlost/findlost",
+			"style": {
+				"navigationBarTitleText": "失物招领"
+			}
+		},
+		{
+			"path": "pages/findlostEidt/findlostEidt",
+			"style": {
+				"navigationBarTitleText": "发表失物招领信息"
+			}
+		}
+
+	    ,{
+            "path" : "pages/oldBookDetail/oldBookDetail",
+            "style" : {
+							"navigationBarTitleText":"书籍详情",
+							"navigationStyle":"custom"
+						}
+        },
+				
+        {
+            "path" : "pages/schoolCalendar/schoolCalendar",
+            "style" : {
+							"navigationBarTitleText": "校历",
+							"navigationBarBackgroundColor":"#FF5777"
+						}
+        },
+				{
+				    "path" : "pages/schoolMap/schoolMap",
+				    "style" : {
+							"navigationBarTitleText":"校园地图",
+							"navigationStyle":"custom"
+						}
+				}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#F76E15",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/images/tabbar/index.png",
+				"selectedIconPath": "static/images/tabbar/indexed.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/newThings/newThings",
+				"iconPath": "static/images/tabbar/news.png",
+				"selectedIconPath": "static/images/tabbar/newsed.png",
+				"text": "新鲜事"
+			},
+			{
+				"pagePath": "pages/profile/profile",
+				"iconPath": "static/images/tabbar/home.png",
+				"selectedIconPath": "static/images/tabbar/homeed.png",
+				"text": "我的"
+			}
+
+		]
+	}
+}

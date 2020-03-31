@@ -1,0 +1,15 @@
+.my-flex {
+	display: flex;
+}
+.my-flex-row {
+	flex-direction: row;
+}
+.my-flex-column {
+	flex-direction: column;
+}
+.my-flex-aljs-center: {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
