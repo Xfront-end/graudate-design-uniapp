@@ -14,8 +14,7 @@
 			<z-login 
 				:isShowModal="isShowModal" 
 				@bottomModalclosed="onbottomModalclosed"
-				@successLogin="onSuccessLogin"
-				@failLogin="onFailLogin"/>
+				@toIdentify="ontoIdentify"/>
 		</view>
 	</view>
 </template>
@@ -49,7 +48,6 @@
 				start: 0,
 				isLoading: false,
 				loadText: '上拉加载更多',
-				isIdentified: false,
 				isLoadMoreShow: false,
 				toggle: false, //强制刷新control组件
 				lock: false
@@ -59,17 +57,6 @@
 			this.toggle = true
 			this.start = 0
 			this.lock = false
-			wx.cloud.callFunction({
-				name: 'login'
-			}).then(res => {
-				user.where({
-					_openid: res.result.openid
-				}).get().then(res => {
-					if(res.data.length > 0) {
-						this.isIdentified = true
-					} 
-				})
-			})
 			const res = await this.getRectentNewThings()
 			this.thingsList = res.data
 		},
@@ -109,51 +96,28 @@
 					url: `../../pages/newThingsDetail/newThingsDetail?newThingsDoc=${upLoad}`
 				})
 			},
-			handlerPub() {
-				wx.getSetting({
-					success: (res) => {
-						if(res.authSetting['scope.userInfo']) {
-							wx.getUserInfo({
-								success: (res) => {
-									if(this.isIdentified) {
-										uni.navigateTo({
-											url:`/pages/newThingEidt/newThingEdit?nickName=${res.userInfo.nickName}&avatarUrl=${res.userInfo.avatarUrl}`
-										})
-									}else {
-										uni.navigateTo({
-											url: '/pages/identify/identify'
-										})
-									}
-								}
-							})
-						}else {
-							uni.showToast({
-								icon: 'none',
-								title: '实名后才可以分享哦'
-							})
-							this.isShowModal = true
-						}
-					}
+			ontoIdentify() {
+				this.isShowModal = false
+				uni.navigateTo({
+					url: '../identify/identify'
 				})
 			},
-			onbottomModalclosed() {
-				this.isShowModal = false
-			},
-			onSuccessLogin(userInfo) {
-				if(this.isIdentified) {
+			handlerPub() {
+				if(this.$store.getters.isLogin) {
+					const userInfo = this.$store.getters.userInfo
 					uni.navigateTo({
 						url: `/pages/newThingEidt/newThingEdit?nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`
 					})
 				}else {
-					uni.navigateTo({
-						url: '/pages/identify/identify'
+					uni.showToast({
+						icon: 'none',
+						title: '实名后才可以分享哦'
 					})
+					this.isShowModal = true
 				}
 			},
-			onFailLogin() {
-				uni.showModal({
-					title: '不授权，不可以发帖哦'
-				})
+			onbottomModalclosed() {
+				this.isShowModal = false
 			},
 			getRectentNewThings() {
 				return new Promise((resolve, reject) => {

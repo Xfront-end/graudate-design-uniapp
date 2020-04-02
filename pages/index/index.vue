@@ -47,6 +47,7 @@
 				this.hotNewsList = res.data
 				console.log(res.data)
 			})
+			
 			wx.cloud.callFunction({
 				name: 'login'
 			}).then(res => {
@@ -54,8 +55,9 @@
 					_openid: res.result.openid
 				}).get()
 				.then(res => {
-					this.login(res.data[0])
-					console.log(this.$store.getters.isLogin)
+					if(res.data.length !== 0) {
+						this.login(res.data[0])
+					}
 				}) 
 			})
 		},

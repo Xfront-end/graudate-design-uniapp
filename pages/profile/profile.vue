@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<user-info-card :loginStatus="isIdentified"/>
-		<personal-service></personal-service>
+		<personal-service @nav2ThatPage="onNav2ThatPage"/>
 		<view class="list-area">
 			<z-list listContent="身份认证信息" :needArrow="true" iconClass="icon-ziyuan" @onListClick="handlerListClick"></z-list>
 			<z-list listContent="分享给好友" iconClass="icon-fenxiangcopy" @onListClick="handlerListClick"></z-list>
@@ -42,21 +42,20 @@
 						})
 						break
 				}
+			},
+			async onNav2ThatPage(upload) {
+				const openid = await wx.cloud.callFunction({
+					name: 'login'
+				}).then(res => res.result.openid)
+				const url = `${upload}?openid=${openid}`
+				console.log(url)
+				uni.navigateTo({
+					url
+				})
 			}
 		},
-		onLoad() {
-		
-		},
 		onShow() {
-			wx.getUserInfo({
-				success: (res) => {
-					console.log(res.userInfo)
-					this.isIdentified = true
-				},
-				fail: (err) => {
-					this.isIdentified = false
-				}
-			})
+			this.isIdentified = this.$store.getters.isLogin 
 		}
 	}
 </script>

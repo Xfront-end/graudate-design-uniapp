@@ -38,13 +38,16 @@ const store = new Vuex.Store({
 				userName: userInfo.userName
 			}
 		},
-		
+		openidLogin(state, openid) {
+			state._openid = openid
+		},
 		pushNewReply(state, replyDetail) {
 			state.newReply.reply.push(replyDetail)
 		}
 	},
 	getters: {
-		isLogin: state => state.userInfo.isLogin
+		isLogin: state => state.userInfo.isLogin,
+		userInfo: state => state.userInfo
 	}
 })
 

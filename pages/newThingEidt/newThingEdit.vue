@@ -43,6 +43,7 @@
 		},
 		onLoad(options) {
 			this.userInfo = options
+			console.log(options)
 		},
 		methods: {
 			chooseImg() {

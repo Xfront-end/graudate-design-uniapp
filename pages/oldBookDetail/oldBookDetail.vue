@@ -29,7 +29,7 @@
 				{{sellersInfo.length}}位同学正在卖这本书
 			</view>
 			<block v-for="item in sellersInfo" :key="item._id">
-				<seller :seller-info="item" />
+				<seller :seller-info="item" @contact="onContact" @toIdentify="onToIdentify"/>
 			</block>
 		</view>
 		<splite-line />
@@ -64,6 +64,17 @@
 			back() {
 				uni.navigateBack({
 					delta: 1
+				})
+			},
+			onContact(sellerInfo) {
+				const sellerInfoStringify = JSON.stringify(sellerInfo)
+				uni.navigateTo({
+					url: `../im/im?sellerInfo=${sellerInfoStringify}`
+				})
+			},
+			onToIdentify() {
+				uni.navigateTo({
+					url: '../identify/identify'
 				})
 			}
 		},

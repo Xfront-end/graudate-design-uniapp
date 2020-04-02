@@ -12,7 +12,7 @@
 				<text class="desc">{{sellerInfo.desc}}</text>
 			</view>
 		</view>
-		<view class="contact">
+		<view class="contact" @click.stop="contact">
 			<view class="iconfont icon-weixin"></view>
 			<view>联系Ta</view>
 		</view>
@@ -27,6 +27,26 @@
 				default() {
 					return {}
 				}
+			}
+		},
+		methods: {
+			contact() {
+				const isLogin = this.$store.getters.isLogin
+				if(isLogin) {
+					this.$emit("contact", this.sellerInfo)
+					return 
+				}
+				uni.showModal({
+					title: '提示',
+					content: '聊天功能需要实名认证',
+					confirmText: '去认证',
+					cancelText: '不了',
+					success: (res) => {
+						if(res.confirm) {
+							this.$emit("toIdentify")
+						}
+					}
+				})
 			}
 		}
 	}

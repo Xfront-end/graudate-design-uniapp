@@ -32,12 +32,11 @@
 			</view>
 			<button @click="onSubmit" class="submitButton" :disabled="!caniSubmit">提交实名认证</button>
 		</view>
-		<z-login
-			:isShowModal="isShowModal" 
-			@bottomModalclosed="onbottomModalclosed"
-			@successLogin="onSuccessLogin"
-			@failLogin="onFailLogin"
-			/>
+		<give-power 
+			:isShowModal="isShowModal"
+			@userGreeGivePower="onSuccessLogin"
+			@userRejectGivePower="onFailLogin"
+			@onbottomModalclosed="onbottomModalclosed"/>
 	</view>
 </template>
 
@@ -47,7 +46,7 @@
 	import linkage from '../../components/linkage/linkage.vue'
 	import normalPicker from '../../components/normalPicker/noram-picker.vue'
 	import chooseImage from '../../components/chooseImage/chooseImg.vue'
-	import zLogin from '../../components/login/login.vue'
+	import givePower from '../../components/givePower/give-power.vue'
 	//子组件
 	import radioSex from './identifyChildCpn/radio-sex.vue'
 	//js
@@ -61,7 +60,7 @@
 			linkage,
 			normalPicker,
 			chooseImage,
-			zLogin
+			givePower
 		},
 		data() {
 			return {
@@ -100,6 +99,7 @@
 				}
 			},
 			async onSuccessLogin(userInfo) {
+				console.log(userInfo)
 				uni.showLoading({
 					title: '提交数据中'
 				})
@@ -121,14 +121,19 @@
 					major: this.major,
 					year: this.year,
 				}
+				const identigyInfo = {
+					...formInfo,
+					fileId,
+					...userInfo
+				}
 				return new Promise((resolve, reject) => {
 					user.add({
 						data: {
-							...formInfo,
-							fileId,
-							...userInfo
+							...identigyInfo
 						}
 					}).then(res => {
+						this.$store.commit('login', identigyInfo)
+						console.log(identigyInfo)
 						uni.hideLoading()
 						resolve()
 					})
@@ -162,7 +167,6 @@
 						}
 					}
 				})
-				
 			},
 		},
 		computed: {

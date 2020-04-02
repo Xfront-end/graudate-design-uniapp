@@ -85,7 +85,23 @@
 							"navigationBarTitleText":"校园地图",
 							"navigationStyle":"custom"
 						}
+				},
+				{
+					"path" : "pages/messages/messages",
+					"style" : {
+						"navigationBarTitleText":"消息"
+					}
+				},
+				{
+					"path" : "pages/im/im",
+					"style" : {
+						"navigationBarTitleText":"im"
+					}
 				}
+        ,{
+            "path" : "pages/profileFav/profileFav",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -94,8 +110,8 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-		"color": "#333333",
-		"selectedColor": "#F76E15",
+		"color": "#515151",
+		"selectedColor": "#FF5777",
 		"borderStyle": "black",
 		"backgroundColor": "#FFFFFF",
 		"list": [{
@@ -109,6 +125,12 @@
 				"iconPath": "static/images/tabbar/news.png",
 				"selectedIconPath": "static/images/tabbar/newsed.png",
 				"text": "新鲜事"
+			},
+			{
+				"pagePath": "pages/messages/messages",
+				"iconPath": "static/images/tabbar/mess.png",
+				"selectedIconPath": "static/images/tabbar/messed.png",
+				"text": "消息中心"
 			},
 			{
 				"pagePath": "pages/profile/profile",

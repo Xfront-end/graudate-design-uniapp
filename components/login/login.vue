@@ -1,7 +1,7 @@
 <template>
 	<bottom-modal :isShowModal="isShowModal" @bottomModalclosed="onbottomModalclosed">
 		<template>
-			<button type="plain" open-type="getUserInfo" @getuserinfo="onGetUserInfo">{{tips}}</button>
+			<button type="plain" @click="toIdentify">{{tips}}</button>
 		</template>
 	</bottom-modal>
 </template>
@@ -25,15 +25,8 @@
 			bottomModal
 		},
 		methods: {
-			onGetUserInfo(event) {
-				console.log(event)
-				const userInfo = event.detail.userInfo
-				if(userInfo) {
-					this.onbottomModalclosed()
-					this.$emit('successLogin', userInfo)
-				}else {
-					this.$emit('failLogin')
-				}
+			toIdentify() {
+				this.$emit('toIdentify')
 			},
 			onbottomModalclosed() {
 				this.$emit('bottomModalclosed')

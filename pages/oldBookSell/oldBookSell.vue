@@ -3,7 +3,9 @@
 		<search-bar placeholder="搜搜吧,也许有您想要的.."/>
 		<view style="height: 90rpx;"></view>
 		<block v-for="item in oldBookInfo" :key="item._id">
-			<book-info-card :book-info="item" @nav2bookDetail="onNav2bookDetail"/>
+			<book-info-card 
+				:book-info="item" 
+				@nav2bookDetail="onNav2bookDetail"/>
 		</block>
 		<view class="code-release">
 			<b-code-release @release="release" />
@@ -34,15 +36,31 @@
 		},
 		methods: {
 			release() {
-				uni.scanCode({
-					scanType: ['barCode'],
-					success: res => {
-						console.log(res)
-						uni.navigateTo({
-							url: `../oldBookSellEdit/oldBookSellEdit?isbn=${res.result}`
-						})
-					}
-				})
+				if(this.$store.getters.isLogin) {
+					uni.scanCode({
+						scanType: ['barCode'],
+						success: res => {
+							console.log(res)
+							uni.navigateTo({
+								url: `../oldBookSellEdit/oldBookSellEdit?isbn=${res.result}`
+							})
+						}
+					})
+				}else {
+					uni.showModal({
+						title: '提示',
+						content: '卖书需要实名认证哦',
+						confirmText: '去认证',
+						cancelText: '不了',
+						success: (res) => {
+							if(res.confirm) {
+								uni.navigateTo({
+									url: '../identify/identify'
+								})
+							}
+						}
+					})
+				}
 			},
 			onNav2bookDetail(upload) {
 				uni.navigateTo({
@@ -50,8 +68,8 @@
 				})
 			}
 		},
-		onLoad() {
-			oldBookSellInfo.get().then(res=> {
+		onShow() {
+			oldBookSellInfo.orderBy('createdTime', 'desc').get().then(res=> {
 				this.oldBookInfo = res.data
 			})
 		}

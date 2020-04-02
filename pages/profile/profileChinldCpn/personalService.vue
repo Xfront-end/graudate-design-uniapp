@@ -1,23 +1,49 @@
 <template>
 	<view class="container">
-		<view>
-			<text class="iconfont icon-erweima big-font"></text>
-			<text class="normal">我的健康码</text>
-		</view>
-		<view>
-			<text class="iconfont icon-viphuiyuanhuangguan big-font"></text>
-			<text class="normal">我的收藏</text>
-		</view>
-		<view>
-			<text class="iconfont icon-fabu big-font"></text>
-			<text class="normal">我的工单</text>
-		</view>
+		<block v-for="(item, index) in services" :key="index">
+			<view @click="nav2ThatPage(item.url)">
+				<text class="iconfont big-font" :class="item.icon"></text>
+				<text class="normal">{{item.name}}</text>
+			</view>
+		</block>
 	</view>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				services: [
+					{
+						name: '我的健康码',
+						icon: 'icon-erweima',
+						url: '../profileFav/profileFav'
+					},
+					{
+						name: '我的收藏',
+						icon: 'icon-viphuiyuanhuangguan',
+						url: '../profileFav/profileFav'
+					},
+					{
+						name: '我的工单',
+						icon: 'icon-fabu',
+						url: '../profileFav/profileFav'
+					},
+				]
+			}
+		},
+		methods: {
+			nav2ThatPage(url) {
+				if(this.$store.getters.isLogin) {
+					this.$emit('nav2ThatPage', url)
+				}else {
+					uni.showToast({
+						icon: 'none',
+						title: '没认证,别捣乱'
+					})
+				}
+			}
+		}
 	}
 </script>
 
