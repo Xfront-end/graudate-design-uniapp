@@ -66,7 +66,7 @@
 					{
 						serviceName: '信息采集',
 						iconName: 'icon-beizhu',
-						url: '/pages/umap'
+						url: '../infoCollection/infoCollection'
 					}
 				]
 			}

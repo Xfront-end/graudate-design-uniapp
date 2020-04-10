@@ -68,13 +68,6 @@
 					@click="onChooseImage">
 				</image>
 			</view>
-  
-			<view class="message-sender" v-if="!userInfo">
-				<button 
-					open-type="getUserInfo" 
-					@getuserinfo="onGetUserInfo" 
-					class="userinfo">请先登录后参与聊天</button>
-			</view>
 		</view>
 	</view> 
 </template>

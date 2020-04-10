@@ -22,7 +22,6 @@
 		},
 		data() {
 			return {
-				avatarUrl: './user-unlogin.png',
 				userInfo: null,
 				logged: false,
 				takeSession: false,
@@ -83,15 +82,15 @@
 			})
 			this.onGetUserInfo = this.onGetUserInfo
 			this.getOpenID = this.getOpenID
-			uni.getSystemInfo({
-				success: res => {
-					console.log('system info', res)
-					if (res.safeArea) {
-						const { top, bottom } = res.safeArea
-						this.containerStyle = `padding-top: ${(/ios/i.test(res.system) ? 10 : 20) + top}px; padding-bottom: ${20 + res.windowHeight - bottom}px`
-					}
-				}
-			})
+			// uni.getSystemInfo({
+			// 	success: res => {
+			// 		console.log('system info', res)
+			// 		if (res.safeArea) {
+			// 			const { top, bottom } = res.safeArea
+			// 			this.containerStyle = `padding-top: ${(/ios/i.test(res.system) ? 10 : 20) + top}px; padding-bottom: ${20 + res.windowHeight - bottom}px`
+			// 		}
+			// 	}
+			// })
 		}
 	}
 </script>
@@ -104,7 +103,5 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		padding-top: 80rpx;
-		padding-bottom: 30rpx;
 	}
 </style>

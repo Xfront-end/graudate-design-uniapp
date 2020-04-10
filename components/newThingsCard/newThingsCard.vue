@@ -1,8 +1,12 @@
 <template>
-	<view class="container" @click="cardClicked">
+	<view class="container" >
 		<view class="userInfo">
-			<image :src="thingsDetail.avatarUrl" mode="widthFix"></image>
-			<view class="userName">
+			<navigator 
+				hover-class="none"
+				:url="'../../pages/profileDetail/profileDetail?openid='+thingsDetail._openid">
+				<image :src="thingsDetail.avatarUrl" mode="widthFix"></image>
+			</navigator>
+			<view class="userName" @click.stop="cardClicked" @longpress="deleteNewThings">
 				<view class="nickName">
 					{{thingsDetail.nickName}}
 				</view>
@@ -11,7 +15,10 @@
 				</view>
 			</view>
 		</view>
-		<view class="content" :class="isMoreLine?'':'ellipsis_mul'">
+		<view 
+			@click.stop="cardClicked" @longpress="deleteNewThings"
+			class="content" 
+			:class="isMoreLine?'':'ellipsis_mul'">
 			{{thingsDetail.content}}
 		</view>
 		<view class="img">
@@ -48,6 +55,9 @@
 			},
 			cardClicked() {
 				this.$emit('cardClicked', this.thingsDetail._id)
+			},
+			deleteNewThings() {
+				this.$emit('deleteNewThings', this.thingsDetail._id)
 			}
 		},
 		filters: {

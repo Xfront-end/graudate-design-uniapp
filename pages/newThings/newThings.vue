@@ -4,7 +4,10 @@
 		<view style="height:100rpx"></view>
 		<view>
 			<block v-for="item in thingsList" :key="item._id">
-				<things-card :thingsDetail="item" @cardClicked="nav2detail">
+				<things-card 
+					:thingsDetail="item" 
+					@cardClicked="nav2detail"
+					@deleteNewThings="onDeleteNewThings">
 					<things-control :docid="item._id" v-if="toggle"/>
 				</things-card>
 				<splite-line></splite-line>
@@ -131,6 +134,9 @@
 						reject(err)
 					}) 
 				})
+			},
+			onDeleteNewThings(upLoad) {
+				console.log("hello")
 			}
 		}
 	}

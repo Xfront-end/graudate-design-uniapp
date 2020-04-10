@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="avatar">
+		<view class="avatar" @click="browserUserInfo(sellerInfo._openid)">
 			<image :src="sellerInfo.avatarUrl" mode="aspectFill"></image>
 		</view>
 		<view class="text-info">
@@ -47,6 +47,9 @@
 						}
 					}
 				})
+			},
+			browserUserInfo(upload) {
+				this.$emit('browserUserInfo', upload)
 			}
 		}
 	}

@@ -1,9 +1,13 @@
 <template>
-	<view class="container" @longpress="pressDelete" @click="replyComment">
-		<view class="avatar">
-			<image :src="commentDetail.avatarUrl" mode="aspectFill"></image>
-		</view>
-		<view class="comment-info">
+	<view class="container" @longpress="pressDelete">
+		<navigator 
+			hover-class="none"
+			:url="'../../pages/profileDetail/profileDetail?openid='+commentDetail._openid">
+			<view class="avatar">
+				<image :src="commentDetail.avatarUrl" mode="aspectFill"></image>
+			</view>
+		</navigator>
+		<view class="comment-info" @click="replyComment">
 			<view class="comment-user-info">
 				<view class="name-time">
 					<view class="nick-name">

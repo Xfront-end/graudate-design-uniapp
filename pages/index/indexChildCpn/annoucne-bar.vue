@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="notice-bar">
-			<view class="notice-icon">
+			<view class="notice-icon" @click="navgiate2news">
 				<text class="iconfont icon-huo"></text>
 				<text>校内热点</text>
 			</view>
@@ -9,18 +9,19 @@
 				<text class="iconfont icon-gengduo"></text>
 			</view>
 		</view>
-		<swiper :vertical="true" :autoplay="true" :interval="3000" :duration="1000">
-			<block v-for="item in hotNews" :key="item.id">
-				<swiper-item @click="navtonews">
-					<view class="swiper-item">
+		<swiper 
+			:vertical="true" 
+			:autoplay="true" 
+			:interval="3000"
+			:duration="1000">
+			<block v-for="item in hotNews" :key="item.realHref">
+				<swiper-item>
+					<view class="swiper-item" @click="navgiate2news(item.realHref)">
 						<view class="news-title">
 							标题: {{item.newsTitle}}
 						</view>
-						<view class="news-content">
-							{{item.newsContent}}
-						</view>	
 						<view class="news-other">
-							<text>{{item.newsAuth}}</text>
+							<text>{{item.newsAuth?'newsAuth':'来自学校官网'}}</text>
 							<text>{{item.newsTime}}</text>
 						</view>
 					</view>
@@ -41,9 +42,9 @@
 			}
 		},
 		methods: {
-			navtonews() {
-				console.log('跳转到新闻详细页面')
-			}
+			navgiate2news(upload) {
+				this.$emit('navgiate2news', upload)
+			},
 		}
 	}
 </script>

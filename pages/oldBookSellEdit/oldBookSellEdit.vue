@@ -39,6 +39,7 @@
 				const bookInfo = {
 					avatarUrl: this.$store.state.userInfo.avatarUrl,
 					name: this.$store.state.userInfo.userName,
+					nickName: this.$store.state.userInfo.nickName,
 					isbn: this.isbn,
 					coverImg: this.bookDetail.cover_url,
 					bookIntro: this.bookDetail.book_intro,

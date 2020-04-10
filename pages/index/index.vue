@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<z-swiper :imgArr="swiperImages"/>
-		<announce-bar :hotNews="hotNewsList"/>
+		<announce-bar :hotNews="hotNewsList" @navgiate2news="onNavgiate2news"/>
 		<splite-line/>
 		<function-box @nav2thatPage="handleNav2thatPage"/>
 	</view>
@@ -33,8 +33,17 @@
 		methods: {
 			...mapMutations(['login']),
 			handleNav2thatPage(url) {
-				console.log(url)
 				wx.navigateTo({
+					url
+				})
+			},
+			onNavgiate2news(upLoad) {
+				const result = typeof upLoad
+				let url = '../news/news'
+				if(result === 'string') {
+					url = `../newsDetail/newsDetail?href=${upLoad}`
+				}
+				uni.navigateTo({
 					url
 				})
 			}
@@ -45,7 +54,6 @@
 			})
 			db.collection('hotNewsList').get().then(res => {
 				this.hotNewsList = res.data
-				console.log(res.data)
 			})
 			
 			wx.cloud.callFunction({

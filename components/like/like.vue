@@ -40,7 +40,8 @@
 					this.favNum++
 					zan.add({
 						data: {
-							docid: this.docid
+							docid: this.docid,
+							createdTime: db.serverDate()
 						}
 					}).then(res => {
 						this.updataFavNum(1)

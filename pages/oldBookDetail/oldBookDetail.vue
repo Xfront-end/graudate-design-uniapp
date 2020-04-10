@@ -29,7 +29,11 @@
 				{{sellersInfo.length}}位同学正在卖这本书
 			</view>
 			<block v-for="item in sellersInfo" :key="item._id">
-				<seller :seller-info="item" @contact="onContact" @toIdentify="onToIdentify"/>
+				<seller 
+					:seller-info="item" 
+					@contact="onContact"
+					@browserUserInfo="onBrowserUserInfo"
+					@toIdentify="onToIdentify"/>
 			</block>
 		</view>
 		<splite-line />
@@ -75,6 +79,11 @@
 			onToIdentify() {
 				uni.navigateTo({
 					url: '../identify/identify'
+				})
+			},
+			onBrowserUserInfo(upLoad) {
+				uni.navigateTo({
+					url: '../profileDetail/profileDetail?openid='+upLoad
 				})
 			}
 		},

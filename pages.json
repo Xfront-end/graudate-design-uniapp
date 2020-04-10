@@ -62,47 +62,74 @@
 			"style": {
 				"navigationBarTitleText": "发表失物招领信息"
 			}
+		}, 
+		{
+			"path": "pages/oldBookDetail/oldBookDetail",
+			"style": {
+				"navigationBarTitleText": "书籍详情",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/schoolCalendar/schoolCalendar",
+			"style": {
+				"navigationBarTitleText": "校历",
+				"navigationBarBackgroundColor": "#FF5777"
+			}
+		},
+		{
+			"path": "pages/schoolMap/schoolMap",
+			"style": {
+				"navigationBarTitleText": "校园地图",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/im/im",
+			"style": {
+				"navigationBarTitleText": "im"
+			}
+		}, 
+		{
+			"path": "pages/profileFav/profileFav",
+			"style": {
+				"navigationBarTitleText": "收藏"
+			}
+		}, 
+		{
+			"path": "pages/infoCollection/infoCollection",
+			"style": {}
+		}, 
+		{
+			"path": "pages/immcontact/immcontact",
+			"style": {}
+		},
+		{
+			"path": "pages/profileDetail/profileDetail",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/messages/messages",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},
+		{
+			"path": "pages/newsDetail/newsDetail",
+			"style": {
+				"navigationBarTitleText": "新闻详情"
+			}
+		},
+		{
+			"path": "pages/news/news",
+			"style": {
+				"navigationBarTitleText": "新闻",
+				"navigationBarBackgroundColor": "#FF5777"
+			}
 		}
-
-	    ,{
-            "path" : "pages/oldBookDetail/oldBookDetail",
-            "style" : {
-							"navigationBarTitleText":"书籍详情",
-							"navigationStyle":"custom"
-						}
-        },
-				
-        {
-            "path" : "pages/schoolCalendar/schoolCalendar",
-            "style" : {
-							"navigationBarTitleText": "校历",
-							"navigationBarBackgroundColor":"#FF5777"
-						}
-        },
-				{
-				    "path" : "pages/schoolMap/schoolMap",
-				    "style" : {
-							"navigationBarTitleText":"校园地图",
-							"navigationStyle":"custom"
-						}
-				},
-				{
-					"path" : "pages/messages/messages",
-					"style" : {
-						"navigationBarTitleText":"消息"
-					}
-				},
-				{
-					"path" : "pages/im/im",
-					"style" : {
-						"navigationBarTitleText":"im"
-					}
-				}
-        ,{
-            "path" : "pages/profileFav/profileFav",
-            "style" : {}
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
